@@ -11,7 +11,7 @@ describe('HabitPresenter', () => {
 
   beforeEach(() => {
     // 초기화
-    presenter = new HabitPresenter(habits);
+    presenter = new HabitPresenter(habits, 3);
     update = jest.fn(); // mock 함수 이용
   });
 
@@ -55,6 +55,14 @@ describe('HabitPresenter', () => {
     expect(presenter.getHabits()[2].name).toBe('Hiking');
     expect(presenter.getHabits()[2].count).toBe(0);
     checkUpdateIsCalled();
+  });
+
+  it('throws an error when the max habits limit is exceeded', () => {
+    presenter.add('Hiking', update);
+
+    expect(() => {
+      presenter.add('Hiking', update);
+    }).toThrow('습관의 갯수는 3 이상이 될 수 없습니다.');
   });
 
   it('resets all habits counts to 0', () => {
