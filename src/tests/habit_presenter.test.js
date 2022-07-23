@@ -65,13 +65,25 @@ describe('HabitPresenter', () => {
     }).toThrow('습관의 갯수는 3 이상이 될 수 없습니다.');
   });
 
-  it('resets all habits counts to 0', () => {
-    presenter.reset(update);
+  describe('reset', () => {
+    it('set all habits counts to 0', () => {
+      presenter.reset(update);
 
-    expect(presenter.getHabits().length).toBe(2);
-    expect(presenter.getHabits()[0].count).toBe(0);
-    expect(presenter.getHabits()[1].count).toBe(0);
-    checkUpdateIsCalled();
+      expect(presenter.getHabits().length).toBe(2);
+      expect(presenter.getHabits()[0].count).toBe(0);
+      expect(presenter.getHabits()[1].count).toBe(0);
+      checkUpdateIsCalled();
+    });
+
+    it('does not create new object when count is 0', () => {
+      const habits = presenter.getHabits();
+      presenter.reset(update);
+      const updatedHabits = presenter.getHabits();
+
+      expect(updatedHabits[1]).toBe(habits[1]);
+      // toEqual()을 했다면 값만 검사함
+      // toBe()는 object의 참조값을 검사하여 객체가 새로 생성되었다면 ref가 변하여 같다고 나오지 않을것
+    });
   });
 
   function checkUpdateIsCalled() {

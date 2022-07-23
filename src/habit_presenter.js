@@ -52,7 +52,7 @@ export default class HabitPresenter {
       if (habit.count !== 0) {
         return { ...habit, count: 0 };
       }
-      return habit;
+      return habit; // 0이면 새로 만들지 않고 기존거 그대로 사용
     });
 
     update(this.habits);
