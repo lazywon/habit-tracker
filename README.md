@@ -8,6 +8,8 @@ In the project directory, you can run:
 
 ### `yarn test`
 
+### `yarn test -- -u` // test code update
+
 ### `yarn test -- --coverage`
 
 ### `yarn build`
