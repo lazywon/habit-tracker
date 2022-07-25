@@ -12,6 +12,8 @@ In the project directory, you can run:
 
 ### `yarn test -- --coverage`
 
+### `yarn run cypress`
+
 ### `yarn build`
 
 ### `yarn install`
